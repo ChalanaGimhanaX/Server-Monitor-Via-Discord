@@ -1,100 +1,49 @@
-# Python VPS Server Monitoring via Discord Webhooks
+# Server Monitor via Discord
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Paramiko](https://img.shields.io/badge/Library-Paramiko-green.svg)](https://www.paramiko.org/)
-[![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
-[![Discord](https://img.shields.io/badge/Discord-Bot-blueviolet.svg)](https://discord.com)
+Python monitoring script that connects to VPS servers over SSH, collects system metrics, and sends formatted updates to a Discord webhook.
 
-## 📋 Description
+## Features
 
-This **Server Monitor Bot** allows you to **monitor multiple VPS servers** in real-time through **Discord webhooks**. The bot collects system metrics like **CPU usage, RAM, Disk, and Network speeds** and sends them periodically to a designated **Discord channel**.
+- Monitor multiple VPS instances from one script
+- Collect CPU, memory, disk, uptime, OS, and network-traffic data
+- Send periodic status updates to Discord through a webhook
+- Configure server names, IPs, users, passwords, webhook URL, and delay from `.env`
 
-The bot uses **Paramiko SSH** to connect with multiple VPSs and provides updates with **real-time network traffic and all-time traffic statistics**. You can customize the bot with **server names, IPs**, and delay intervals using `.env` configuration.
+## Requirements
 
----
+- Python 3.9+
+- SSH access to the target servers
+- Discord webhook URL
 
-## 🎯 Features
+Install dependencies:
 
-- **Real-Time Monitoring**: CPU, RAM, Disk usage, and network speeds.
-- **All-Time Network Usage**: Tracks total IN and OUT network traffic.
-- **ANSI Colored Output**: Beautifully formatted Discord messages using ANSI escape codes.
-- **Supports Multiple VPS Servers**: Easily configurable with `.env` file.
-- **Automatic Updates on Discord** via Webhook.
-
----
-
-## 🛠️ Requirements
-
-- **Python 3.9+**
-- **Paramiko** library for SSH communication
-- **requests** library for sending HTTP requests to Discord Webhooks
-- **dotenv** to handle environment variables
-
-Install required libraries via:
 ```bash
 pip install paramiko requests python-dotenv
 ```
 
----
+## Configuration
 
-## 📁 Project Structure
+Create a `.env` file:
 
+```properties
+VPS_NAMES=Server1,Server2
+VPS_IPS=203.0.113.10,203.0.113.11
+VPS_USERS=root,admin
+VPS_PASSWORDS=password1,password2
+WEBHOOK_URL=https://discord.com/api/webhooks/your-webhook-id
+DELAY=5
 ```
-server-monitor/
-│
-├── main.py                 # Main script to run the bot
-├── .env                    # Environment variables (for credentials & config)
-├── requirements.txt        # Dependencies
-└── README.md               # Documentation (this file)
+
+Do not commit real server credentials or webhook URLs.
+
+## Running
+
+```bash
+python main.py
 ```
 
----
+The script will post updated server metrics to the configured Discord channel on the configured interval.
 
-## ⚙️ Setup & Configuration
+## Notes
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/ChalanaGimhanaX/Server-Monitor-Via-Discord.git
-   cd Server-Monitor-Via-Discord
-   ```
-
-2. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Create a `.env` File:**
-
-   In the root directory, create a `.env` file with the following content:
-
-   ```
-   VPS_NAMES=Server1,Server2  # Comma-separated server names
-   VPS_IPS=192.168.0.1,192.168.0.2  # Comma-separated VPS IPs
-   VPS_USERS=root,admin  # SSH users
-   VPS_PASSWORDS=password1,password2  # SSH passwords
-   WEBHOOK_URL=https://discord.com/api/webhooks/your-webhook-id  # Discord webhook URL
-   DELAY=5  # Interval between updates (in seconds)
-   ```
-
-4. **Run the Bot:**
-   ```bash
-   python main.py
-   ```
-
----
-
-## 📌 Usage
-
-Once the bot is running, it will send updates to the specified Discord channel every few seconds (based on the `DELAY` value). It will display:
-
-- Server uptime and OS information
-- CPU usage (with per-core stats)
-- RAM and Disk usage
-- Real-time and all-time network traffic
-
----
-![Preview](https://github.com/user-attachments/assets/21dbb0f0-c9c7-41e4-bcdc-c87eb0e73feb)
-
-## 🛡️ License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
+This is a lightweight operations utility. Use private channels, restricted server credentials, and reasonable polling intervals.
