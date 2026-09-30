@@ -1,4 +1,4 @@
-# 🔥 Server Monitor by Chalana 🚀
+# Python VPS Server Monitoring via Discord Webhooks
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Paramiko](https://img.shields.io/badge/Library-Paramiko-green.svg)](https://www.paramiko.org/)
@@ -55,7 +55,7 @@ server-monitor/
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/ChalanaGimhanaX/Server-Monitor-Via-Discord.git
-   cd server-monitor
+   cd Server-Monitor-Via-Discord
    ```
 
 2. **Install Dependencies:**
